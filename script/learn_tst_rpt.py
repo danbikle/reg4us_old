@@ -35,7 +35,7 @@ test_start_i  = train_end_i
 test_start_s  = str(test_start_i)
 test_end_i    = test_start_i+1
 test_end_s    = str(test_end_i)
-pdb.set_trace()
+
 feat_df  = pd.read_csv('../public/csv/feat.csv')
 train_sr = (feat_df.cdate > train_start_s) & (feat_df.cdate < train_end_s)
 test_sr  = (feat_df.cdate > test_start_s)  & (feat_df.cdate < test_end_s)
