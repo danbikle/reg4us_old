@@ -58,8 +58,9 @@ predictions_df['pred_linr'] = predictions_a.reshape(len(predictions_a),1)
 # I should build a Logistic Regression model.
 logr_model    = linear_model.LogisticRegression()
 # I should get classification from y_train_a:
-# class_train_a = (y_train_a > np.median(y_train_a))
-class_train_a = (y_train_a > np.mean(y_train_a))
+# I prefer median over mean:
+class_train_a = (y_train_a > np.median(y_train_a))
+# class_train_a = (y_train_a > np.mean(y_train_a))
 # I should learn:
 logr_model.fit(x_train_a, class_train_a)
 # Now that I have learned, I should predict:
@@ -67,7 +68,7 @@ predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
 predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
 # I should create a CSV to report from:
-predictions_df.to_csv('../public/csv/predictions.csv', float_format='%4.3f', index=False)
+predictions_df.to_csv('../public/csv/reg4.csv', float_format='%4.3f', index=False)
 
 # I should report long-only-effectiveness:
 print('Long-Only-Effectiveness:')
