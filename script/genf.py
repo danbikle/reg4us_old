@@ -39,7 +39,7 @@ slopes_a = []
 for slope_s in slopes_s.split(','):
     slope_i = int(slope_s.replace('[','').replace(']',''))
     slopes_a.append(slope_i)
-pdb.set_trace()
+
 gspc_df = pd.read_csv('../public/csv/gspc2.csv')
 
 # I should compute pctlead:
