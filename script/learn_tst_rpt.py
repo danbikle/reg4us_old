@@ -49,48 +49,38 @@ from sklearn import linear_model
 linr_model = linear_model.LinearRegression()
 # I should learn:
 linr_model.fit(x_train_a, y_train_a)
-
 # Now that I have learned, I should predict:
 x_test_a       = np.array(test_df)[:,3:]
 predictions_a  = linr_model.predict(x_test_a)
 predictions_df = test_df.copy()
-
-# I should create a CSV to report from:
-predictions_df['predictions'] = predictions_a.reshape(len(predictions_a),1)
-predictions_df.to_csv('../public/csv/predictions_linr.csv', float_format='%4.3f', index=False)
+predictions_df['pred_linr'] = predictions_a.reshape(len(predictions_a),1)
 
 # I should build a Logistic Regression model.
 logr_model    = linear_model.LogisticRegression()
 # I should get classification from y_train_a:
-class_train_a = (y_train_a > np.median(y_train_a))
+# class_train_a = (y_train_a > np.median(y_train_a))
+class_train_a = (y_train_a > np.mean(y_train_a))
 # I should learn:
 logr_model.fit(x_train_a, class_train_a)
-
 # Now that I have learned, I should predict:
-predictions_a  = logr_model.predict(x_test_a)
-predictions_df = test_df.copy()
+predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
+predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
 # I should create a CSV to report from:
-predictions_df['predictions'] = predictions_a.reshape(len(predictions_a),1)
-predictions_df.to_csv('../public/csv/predictions_logr.csv', float_format='%4.3f', index=False)
+predictions_df.to_csv('../public/csv/predictions.csv', float_format='%4.3f', index=False)
 
 # I should report long-only-effectiveness:
-linr_df = pd.read_csv('../public/csv/predictions_linr.csv')
 print('Long-Only-Effectiveness:')
-print(np.sum(linr_df.pctlead))
+print(np.sum(predictions_df.pctlead))
 
 # I should report Linear-Regression-Effectiveness:
-eff_sr  = linr_df.pctlead * np.sign(linr_df.predictions)
+eff_sr  = predictions_df.pctlead * np.sign(predictions_df.pred_linr)
 print('Linear-Regression-Effectiveness:')
 print(np.sum(eff_sr))
 
 # I should report Logistic-Regression-Effectiveness:
-logr_df = pd.read_csv('../public/csv/predictions_logr.csv')
-pos_df  = logr_df[logr_df.predictions]
-neg_df  = logr_df[~logr_df.predictions]
-pos_f   = np.sum(pos_df.pctlead)
-neg_f   = np.sum(neg_df.pctlead)
+eff_sr  = predictions_df.pctlead * np.sign(predictions_df.pred_logr - 0.5)
 print('Logistic-Regression-Effectiveness:')
-print(pos_f-neg_f)
+print(np.sum(eff_sr))
 
 'bye'
