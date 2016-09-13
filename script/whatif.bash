@@ -16,8 +16,8 @@ cd ~/reg4us/script/
 # I should create a folder to hold CSV data:
 mkdir -p ~/reg4us/public/csv/
 
-# I should remove csv from last run:
-rm -f ../public/csv/whatif_pred.csv
+# I should prep CSV:
+echo 'whatif_price,pred_linr,pred_logr' > ../public/csv/whatif_pred.csv
 
 # debug
 # I should get prices from Yahoo:
@@ -41,11 +41,14 @@ do
 
     # I should learn, test, and report:
     ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
-    tail -1 ../public/csv/reg4.csv >> ../public/csv/whatif_pred.csv
+    tail -1 ../pub*/csv/reg4.csv | awk -F, '{print $2"," $NF-1"," $NF}' >> ../public/csv/whatif_pred.csv
+
     cp ~/reg4us/public/csv/gspc2.csv.bak ~/reg4us/public/csv/gspc2.csv
 done
 
 # I should see 5 predictions for 5 ascending price points:
 cat ../public/csv/whatif_pred.csv
+~/anaconda3/bin/python whatif_rpt.py
+
 
 exit
