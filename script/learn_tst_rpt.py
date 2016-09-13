@@ -77,13 +77,15 @@ print(eff_lo_f)
 
 # I should report Linear-Regression-Effectiveness:
 eff_sr     = predictions_df.pctlead * np.sign(predictions_df.pred_linr)
-eff_linr_f = np.sum(eff_sr)
+predictions_df['eff_linr'] = eff_sr
+eff_linr_f                 = np.sum(eff_sr)
 print('Linear-Regression-Effectiveness:')
 print(eff_linr_f)
 
 # I should report Logistic-Regression-Effectiveness:
 eff_sr     = predictions_df.pctlead * np.sign(predictions_df.pred_logr - 0.5)
-eff_logr_f = np.sum(eff_sr)
+predictions_df['eff_logr'] = eff_sr
+eff_logr_f                 = np.sum(eff_sr)
 print('Logistic-Regression-Effectiveness:')
 print(eff_logr_f)
 
