@@ -71,17 +71,25 @@ predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 predictions_df.to_csv('../public/csv/reg4.csv', float_format='%4.3f', index=False)
 
 # I should report long-only-effectiveness:
+eff_lo_f = np.sum(predictions_df.pctlead)
 print('Long-Only-Effectiveness:')
-print(np.sum(predictions_df.pctlead))
+print(eff_lo_f)
 
 # I should report Linear-Regression-Effectiveness:
-eff_sr  = predictions_df.pctlead * np.sign(predictions_df.pred_linr)
+eff_sr     = predictions_df.pctlead * np.sign(predictions_df.pred_linr)
+eff_linr_f = np.sum(eff_sr)
 print('Linear-Regression-Effectiveness:')
-print(np.sum(eff_sr))
+print(eff_linr_f)
 
 # I should report Logistic-Regression-Effectiveness:
-eff_sr  = predictions_df.pctlead * np.sign(predictions_df.pred_logr - 0.5)
+eff_sr     = predictions_df.pctlead * np.sign(predictions_df.pred_logr - 0.5)
+eff_logr_f = np.sum(eff_sr)
 print('Logistic-Regression-Effectiveness:')
-print(np.sum(eff_sr))
+print(eff_logr_f)
 
+# I should use html to report:
+model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
+eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
+pdb.set_trace()
+rpt_df  = pd.DataFrame(model_l)
 'bye'
