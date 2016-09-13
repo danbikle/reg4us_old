@@ -31,6 +31,7 @@ do
     cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/gspc2.csv.bak
     cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/whatif.csv
     tail -1 ~/reg4us/public/csv/gspc2.csv >> ~/reg4us/public/csv/whatif.csv
+    # I should apply pctchange to last price:
     echo ~/anaconda3/bin/python whatif.py $pctchange
 done
 					   
