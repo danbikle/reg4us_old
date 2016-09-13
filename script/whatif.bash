@@ -16,6 +16,9 @@ cd ~/reg4us/script/
 # I should create a folder to hold CSV data:
 mkdir -p ~/reg4us/public/csv/
 
+# I should remove csv from last run:
+rm -f ../public/csv/whatif_pred.csv
+
 # debug
 # I should get prices from Yahoo:
 # /usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/reg4us/public/csv/gspc.csv
@@ -31,17 +34,18 @@ do
     cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/whatif.csv
     tail -1 ~/reg4us/public/csv/gspc2.csv >> ~/reg4us/public/csv/whatif.csv
     # I should apply pctchange to last price:
-    echo ~/anaconda3/bin/python whatif.py $pctchange
+    ~/anaconda3/bin/python whatif.py $pctchange
 
     # I should compute features from the prices:
     ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
     # I should learn, test, and report:
     ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
+    tail -1 ../public/csv/reg4.csv >> ../public/csv/whatif_pred.csv
     cp ~/reg4us/public/csv/gspc2.csv.bak ~/reg4us/public/csv/gspc2.csv
-    exit
-    exit
-    exit
 done
+
+# I should see 5 predictions for 5 ascending price points:
+cat ../public/csv/whatif_pred.csv
 
 exit
