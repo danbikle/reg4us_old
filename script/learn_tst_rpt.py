@@ -98,4 +98,23 @@ rpt_df.columns          = ['model']
 rpt_df['effectiveness'] = eff_l
 rpt_df.to_html(        '../app/views/pages/_agg_effectiveness.erb',      index=False)
 predictions_df.to_html('../app/views/pages/_detailed_effectiveness.erb', index=False)
+
+# I should plot Linear   Regression Predictions vs Pct Lead Observations:
+linr1_df = predictions_df[['pred_linr','pctlead']][:-1]
+
+# I should plot Logistic Regression Predictions vs Pct Lead Observations:
+logr1_df = predictions_df[['pred_logr','pctlead']][:-1]
+
+import matplotlib
+matplotlib.use('Agg')
+# Order is important here.
+# Do not move the next import:
+import matplotlib.pyplot as plt
+plt.scatter(linr1_df.pred_linr,linr1_df.pctlead)
+plt.savefig('../public/linr1.png')
+plt.close()
+plt.scatter(logr1_df.pred_logr,logr1_df.pctlead)
+plt.savefig('../public/logr1.png')
+plt.close()
+
 'bye'
