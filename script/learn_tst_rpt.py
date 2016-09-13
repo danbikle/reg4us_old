@@ -99,10 +99,10 @@ rpt_df['effectiveness'] = eff_l
 rpt_df.to_html(        '../app/views/pages/_agg_effectiveness.erb',      index=False)
 predictions_df.to_html('../app/views/pages/_detailed_effectiveness.erb', index=False)
 
-# I should plot Linear   Regression Predictions vs Pct Lead Observations:
+# I should plot Pct Lead Observations vs Linear Regression Predictions
 linr1_df = predictions_df[['pred_linr','pctlead']][:-1]
 
-# I should plot Logistic Regression Predictions vs Pct Lead Observations:
+# I should plot Pct Lead Observations vs Logistic Regression Predictions
 logr1_df = predictions_df[['pred_logr','pctlead']][:-1]
 
 import matplotlib
@@ -110,19 +110,28 @@ matplotlib.use('Agg')
 # Order is important here.
 # Do not move the next import:
 import matplotlib.pyplot as plt
+
+fig = plt.figure()
+fig.suptitle('Scatter Plot Of Pct Lead Observations vs Linear Regression Predictions')
 plt.scatter(linr1_df.pred_linr,linr1_df.pctlead)
 plt.savefig('../public/linr1.png')
 plt.close()
+
+fig = plt.figure()
+fig.suptitle('Scatter Plot Of Pct Lead Observations vs Logistic Regression Predictions')
 plt.scatter(logr1_df.pred_logr,logr1_df.pctlead)
 plt.savefig('../public/logr1.png')
 plt.close()
+
+fig = plt.figure()
+fig.suptitle('Scatter Plot Of Logistic Regression Predictions vs Linear Regression Predictions')
 plt.scatter(predictions_df.pred_linr, predictions_df.pred_logr)
 plt.savefig('../public/linlog.png')
 plt.close()
 
 rgb0_df          = predictions_df[:-1][['cdate','cp']]
 rgb0_df['cdate'] = pd.to_datetime(rgb0_df['cdate'], format='%Y-%m-%d')
-
+rgb0_df.columns  = ['cdate','Long Only']
 # I should create effectiveness-line for Linear Regression predictions.
 # I have two simple rules:
 # 1. If blue line moves 1%, then model-line moves 1%.
@@ -135,7 +144,7 @@ for row_i in range(len_i):
   blue_delt = blue_l[row_i+1]-blue_l[row_i]
   linr_delt = np.sign(eff_linr_l[row_i]) * blue_delt
   linr_l.append(linr_l[row_i]+linr_delt)
-rgb0_df['linr'] = linr_l[:-1]
+rgb0_df['Linear Regression'] = linr_l[:-1]
 
 # I should create effectiveness-line for Logistic Regression predictions.
 eff_logr_l = [eff_logr for eff_logr in predictions_df.eff_logr]
@@ -144,10 +153,10 @@ for row_i in range(len_i):
   blue_delt = blue_l[row_i+1]-blue_l[row_i]
   logr_delt = np.sign(eff_logr_l[row_i]) * blue_delt
   logr_l.append(logr_l[row_i]+logr_delt)
-rgb0_df['logr'] = logr_l[:-1]
+rgb0_df['Logistic Regression'] = logr_l[:-1]
 
 rgb1_df = rgb0_df.set_index(['cdate'])
-rgb1_df.plot.line(title="GSPC 2016", figsize=(11,7))
+rgb1_df.plot.line(title="RGB Effectiveness Visualization", figsize=(11,7))
 plt.savefig('../public/rgb.png')
 plt.close()
 
