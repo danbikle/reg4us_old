@@ -120,4 +120,10 @@ plt.scatter(predictions_df.pred_linr, predictions_df.pred_logr)
 plt.savefig('../public/linlog.png')
 plt.close()
 
+rgb_df = predictions_df[['cdate','cp']]
+rgb_df.set_index(['cdate'])
+rgb_df.plot.line(title="GSPC 2016")
+plt.savefig('../public/rgb.png')
+plt.close()
+
 'bye'
