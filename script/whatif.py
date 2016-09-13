@@ -19,10 +19,9 @@ pctchange_f = float(sys.argv[1]) / 100.0
 whatif_df   = pd.read_csv('../public/csv/whatif.csv')
 lastp_f     = float(whatif_df[-1:].cp)
 newcp_f     = lastp_f * pctchange_f + lastp_f
-pdb.set_trace()
-idxlast_i = whatif_df[-1:].index[0]
+idxlast_i   = whatif_df[-1:].index[0]
 whatif_df.loc[idxlast_i,'cp'] = newcp_f
-whatif_df.to_csv('../public/csv/newcp.csv', float_format='%4.4f', index=False)
-whatif_df.tail()
+whatif_df.to_csv('../public/csv/gspc2.csv', float_format='%4.4f', index=False)
+
 'bye'
 

@@ -24,25 +24,24 @@ mkdir -p ~/reg4us/public/csv/
 # echo cdate,cp                                                              > ~/reg4us/public/csv/gspc2.csv
 # sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/reg4us/public/csv/gspc2.csv
 # debug
-
+cp ~/reg4us/public/csv/gspc2.csv  ~/reg4us/public/csv/gspc2.csv.bak
 for pctchange in -0.4 -0.2 0.0 0.2 0.4
 do
     echo $pctchange
-    cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/gspc2.csv.bak
     cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/whatif.csv
     tail -1 ~/reg4us/public/csv/gspc2.csv >> ~/reg4us/public/csv/whatif.csv
     # I should apply pctchange to last price:
     echo ~/anaconda3/bin/python whatif.py $pctchange
+
+    # I should compute features from the prices:
+    ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
+
+    # I should learn, test, and report:
+    ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
+    cp ~/reg4us/public/csv/gspc2.csv.bak ~/reg4us/public/csv/gspc2.csv
+    exit
+    exit
+    exit
 done
-					   
-
-
-exit
-
-# I should compute features from the prices:
-~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
-
-# I should learn, test, and report:
-~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
 
 exit
