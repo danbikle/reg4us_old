@@ -58,9 +58,9 @@ predictions_df['pred_linr'] = predictions_a.reshape(len(predictions_a),1)
 # I should build a Logistic Regression model.
 logr_model    = linear_model.LogisticRegression()
 # I should get classification from y_train_a:
-# I prefer median over mean:
-class_train_a = (y_train_a > np.median(y_train_a))
-# class_train_a = (y_train_a > np.mean(y_train_a))
+# Should I prefer median over mean?:
+# class_train_a = (y_train_a > np.median(y_train_a))
+class_train_a = (y_train_a > np.mean(y_train_a))
 # I should learn:
 logr_model.fit(x_train_a, class_train_a)
 # Now that I have learned, I should predict:
@@ -90,6 +90,10 @@ print(eff_logr_f)
 # I should use html to report:
 model_l = ['Long Only', 'Linear Regression', 'Logistic Regression']
 eff_l   = [eff_lo_f, eff_linr_f, eff_logr_f]
-pdb.set_trace()
-rpt_df  = pd.DataFrame(model_l)
+
+rpt_df                  = pd.DataFrame(model_l)
+rpt_df.columns          = ['model']
+rpt_df['effectiveness'] = eff_l
+rpt_df.to_html(        '../app/views/pages/_agg_effectiveness.erb',      index=False)
+predictions_df.to_html('../app/views/pages/_detailed_effectiveness.erb', index=False)
 'bye'
