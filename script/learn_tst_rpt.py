@@ -116,5 +116,8 @@ plt.close()
 plt.scatter(logr1_df.pred_logr,logr1_df.pctlead)
 plt.savefig('../public/logr1.png')
 plt.close()
+plt.scatter(predictions_df.pred_linr, predictions_df.pred_logr)
+plt.savefig('../public/linlog.png')
+plt.close()
 
 'bye'
