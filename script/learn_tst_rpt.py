@@ -120,9 +120,34 @@ plt.scatter(predictions_df.pred_linr, predictions_df.pred_logr)
 plt.savefig('../public/linlog.png')
 plt.close()
 
-rgb_df = predictions_df[['cdate','cp']]
-rgb_df.set_index(['cdate'])
-rgb_df.plot.line(title="GSPC 2016")
+rgb0_df          = predictions_df[:-1][['cdate','cp']]
+rgb0_df['cdate'] = pd.to_datetime(rgb0_df['cdate'], format='%Y-%m-%d')
+
+# I should create effectiveness-line for Linear Regression predictions.
+# I have two simple rules:
+# 1. If blue line moves 1%, then model-line moves 1%.
+# 2. If model is True, model-line goes up.
+len_i      = len(rgb0_df)
+blue_l     = [cp       for cp       in predictions_df.cp]
+eff_linr_l = [eff_linr for eff_linr in predictions_df.eff_linr]
+linr_l     = [blue_l[0]]
+for row_i in range(len_i):
+  blue_delt = blue_l[row_i+1]-blue_l[row_i]
+  linr_delt = np.sign(eff_linr_l[row_i]) * blue_delt
+  linr_l.append(linr_l[row_i]+linr_delt)
+rgb0_df['linr'] = linr_l[:-1]
+
+# I should create effectiveness-line for Logistic Regression predictions.
+eff_logr_l = [eff_logr for eff_logr in predictions_df.eff_logr]
+logr_l     = [blue_l[0]]
+for row_i in range(len_i):
+  blue_delt = blue_l[row_i+1]-blue_l[row_i]
+  logr_delt = np.sign(eff_logr_l[row_i]) * blue_delt
+  logr_l.append(logr_l[row_i]+logr_delt)
+rgb0_df['logr'] = logr_l[:-1]
+
+rgb1_df = rgb0_df.set_index(['cdate'])
+rgb1_df.plot.line(title="GSPC 2016", figsize=(11,7))
 plt.savefig('../public/rgb.png')
 plt.close()
 
