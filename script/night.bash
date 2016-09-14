@@ -16,6 +16,9 @@
 # I should cd to the right place:
 cd ~/reg4us/script/
 
+# I should run whatif.bash before night.bash
+./whatif.bash
+
 # I should create a folder to hold CSV data:
 mkdir -p ~/reg4us/public/csv/
 
@@ -31,8 +34,5 @@ sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/r
 
 # I should learn, test, and report:
 ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
-
-# I should run whatif.bash after night.bash
-./whatif.bash
 
 exit
