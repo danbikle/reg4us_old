@@ -3,7 +3,10 @@
 
 %p What if I visit www.reg4.us on Monday night?
 
-%p I should see predictions (Linear Regression, Logistic Regression) calculated from the Monday closing price.
+%p
+  I should see
+  %a(href='/pages/compare') predictions
+  (Linear Regression, Logistic Regression) calculated from the Monday closing price.
 
 %p What if I want to predict the prediction values for Tuesday night?
 
@@ -35,3 +38,5 @@
 
 %p Often I see a clear negative correlation between price and prediction value.
 %p As price goes up, prediction goes down.
+%hr/
+=render 'layouts/toplinks'
