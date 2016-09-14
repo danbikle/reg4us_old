@@ -11,20 +11,9 @@
 # If you have questions, e-me: bikle101@gmail.com
 
 import pandas as pd
-import pdb
 
-pdb.set_trace()
-rpt_df   = pd.read_csv('../public/csv/whatif_pred.csv')
-rpt_df
-
-
-bye
-lastp_f     = float(whatif_df[-1:].cp)
-newcp_f     = lastp_f * pctchange_f + lastp_f
-idxlast_i   = whatif_df[-1:].index[0]
-whatif_df.loc[idxlast_i,'cp'] = newcp_f
-whatif_df.to_csv('../public/csv/gspc2.csv', float_format='%4.4f', index=False)
-
+rpt_df = pd.read_csv('../public/csv/whatif_pred.csv')
+rpt_df.to_html('../app/views/pages/_whatif_pred.erb', index=False)
 
 'bye'
 

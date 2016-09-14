@@ -17,7 +17,7 @@ cd ~/reg4us/script/
 mkdir -p ~/reg4us/public/csv/
 
 # I should prep CSV:
-echo 'whatif_price,pred_linr,pred_logr' > ../public/csv/whatif_pred.csv
+echo 'Whatif_Price,Linear Regression Prediction,Logistic Regression Prediction' > ../public/csv/whatif_pred.csv
 
 # debug
 # I should get prices from Yahoo:
@@ -28,7 +28,7 @@ echo 'whatif_price,pred_linr,pred_logr' > ../public/csv/whatif_pred.csv
 # sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/reg4us/public/csv/gspc2.csv
 # debug
 cp ~/reg4us/public/csv/gspc2.csv  ~/reg4us/public/csv/gspc2.csv.bak
-for pctchange in -0.4 -0.2 0.0 0.2 0.4
+for pctchange in -1.0 -0.8 -0.6 -0.4 -0.2 0.0 0.2 0.4 0.6 0.8 1.0
 do
     echo $pctchange
     cp ~/reg4us/public/csv/gspc2.csv         ~/reg4us/public/csv/whatif.csv
@@ -50,5 +50,7 @@ done
 cat ../public/csv/whatif_pred.csv
 ~/anaconda3/bin/python whatif_rpt.py
 
+# I should note the current price:
+tail -1 ~/reg4us/public/csv/gspc2.csv > ../app/views/pages/_current_price.erb
 
 exit

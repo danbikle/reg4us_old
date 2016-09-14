@@ -9,9 +9,9 @@
 
 %p Obviously I cannot get those predictions because Tuesday closing price is unknown.
 
-%p What if, however, Tuesday closing price is 0.5% lower than Monday closing price?
+%p What if, however, Tuesday closing price is lower than Monday closing price?
 
-%p What if, however, Tuesday closing price is 0.5% higher than Monday closing price?
+%p What if, however, Tuesday closing price is higher than Monday closing price?
 
 %p What if, however, Tuesday closing price is same as Monday closing price?
 
@@ -24,3 +24,11 @@
   I can anticipate when I should switch the direction of my sentiment.
 
 %p Usually my sentiment is bullish but I do want to know how much of a price-change should happen before I switch to bearish.
+
+%h2
+  Current Price:
+  =render 'current_price'
+
+%p Some possible future prices and corresponding predictions:
+
+=render 'whatif_pred'
