@@ -2,6 +2,8 @@
 
 # ~/reg4us/script/night.bash
 
+# I should run this script at 8pm Calif-time.
+
 # This script should generate some static content each night
 # after the market has closed and the most recent GSPC-closing-price
 # is available from Yahoo.
@@ -29,5 +31,8 @@ sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/r
 
 # I should learn, test, and report:
 ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
+
+# I should run whatif.bash after night.bash
+./whatif.bash
 
 exit
