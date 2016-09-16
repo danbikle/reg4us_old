@@ -7,7 +7,7 @@
 # Next it should report effectiveness of the models.
 
 # Demo:
-# ~/anaconda3/bin/python genf.py TRAINSIZE=30 TESTYEAR=2015
+# ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=30 TESTYEAR=2015
 
 # Above demo will train from years 1985 through 2014 and predict each day of 2015
 
