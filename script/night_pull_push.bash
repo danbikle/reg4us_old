@@ -5,7 +5,7 @@
 # This script should git pull, run night.bash, git commit, git push
 
 # I should dot the .bashrc in case this script called from cron:
-.  ~/reg4us/.bashrc
+.  ~/.bashrc
 cd ~/reg4us/
 git pull heroku master
 
