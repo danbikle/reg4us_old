@@ -1,4 +1,4 @@
-# ~/k4/script/coef2.py
+# ~/reg4us/script/coef2.py
 
 # This script uses linear regression to help me rank features.
 
@@ -9,8 +9,8 @@ import numpy  as np
 import pandas as pd
 import pdb
 
-train_df = pd.read_csv('../public/csv/feat.csv')
-
+csv_df   = pd.read_csv('../public/csv/feat.csv')
+train_df = csv_df[(csv_df.cdate < '2016')]
 # I should build a Linear Regression model from slope columns in train_df:
 x_train_a = np.array(train_df)[:,3:]
 y_train_a = np.array(train_df.pctlead)

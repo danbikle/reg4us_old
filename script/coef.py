@@ -27,7 +27,8 @@ gspc_df['pctlag9'] = (100.0 * (gspc_df.cp - gspc_df.cp.shift(9)) / gspc_df.cp.sh
 
 # I should prep training data.
 obsv_i    = 252*30 # 30 yr
-gspc_a = np.array(gspc_df)[-obsv_i:-1]
+pred_sr = (gspc_df.cdate < '2016')
+gspc_a = np.array(gspc_df[pred_sr])[-obsv_i:-1]
 
 x_train_a = gspc_a[:,3:]
 y_train_a = gspc_a[:,2]
