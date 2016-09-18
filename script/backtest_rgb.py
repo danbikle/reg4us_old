@@ -48,6 +48,12 @@ for row_i in range(len_i):
   logr_l.append(logr_l[row_i]+logr_delt)
 rgb0_df['Logistic Regression'] = logr_l[:-1]
 
+import matplotlib
+matplotlib.use('Agg')
+# Order is important here.
+# Do not move the next import:
+import matplotlib.pyplot as plt
+
 rgb1_df = rgb0_df.set_index(['cdate'])
 rgb1_df.plot.line(title="RGB Effectiveness Visualization", figsize=(11,7))
 plt.savefig('../public/backtest_rgb.png')
