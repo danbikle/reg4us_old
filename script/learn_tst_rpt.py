@@ -156,7 +156,7 @@ for row_i in range(len_i):
 rgb0_df['Logistic Regression'] = logr_l[:-1]
 
 rgb1_df = rgb0_df.set_index(['cdate'])
-rgb1_df.plot.line(title="RGB Effectiveness Visualization", figsize=(11,7))
+rgb1_df.plot.line(title="RGB Effectiveness Visualization "+testyear_s, figsize=(11,7))
 plt.savefig('../public/rgb.png')
 plt.close()
 
