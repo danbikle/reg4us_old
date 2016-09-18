@@ -23,7 +23,8 @@ sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/r
 ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 rm -f /tmp/learn_tst_rpt.py.txt
 rm -f ../public/csv/backtest_*csv
-for (( yr=2000; yr<2002; yr++ ))
+thisyr=`date +%Y`
+for (( yr=2014; yr<=${thisyr}; yr++ ))
 do
     echo backtesting: $yr                                             >> /tmp/learn_tst_rpt.py.txt
     ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr >> /tmp/learn_tst_rpt.py.txt 2>&1
