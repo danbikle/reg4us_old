@@ -1,4 +1,4 @@
-# ~/k4/script/coef.py
+# ~/reg4us/script/coef.py
 
 # This script uses linear regression to help me rank features.
 
