@@ -21,11 +21,11 @@ sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/r
 
 # I should compute features from the prices:
 ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
-
-for (( yr=2000; yr<2002; yr++ ))
+rm -f /tmp/learn_tst_rpt.py.txt
+for (( yr=2000; yr<2017; yr++ ))
 do
-    echo backtesting: $yr
-    ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr > /tmp/learn_tst_rpt.py.txt 2>&1
+    echo backtesting: $yr                                             >> /tmp/learn_tst_rpt.py.txt
+    ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr >> /tmp/learn_tst_rpt.py.txt 2>&1
     mv ../public/csv/reg4.csv ../public/csv/backtest_$yr.csv
     mv ../public/rgb.png ../public/backtest_$yr.png
     ~/anaconda3/bin/python backtest_rpt.py $yr

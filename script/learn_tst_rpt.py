@@ -68,7 +68,7 @@ predictions_a               = logr_model.predict_proba(x_test_a)[:,1]
 predictions_df['pred_logr'] = predictions_a.reshape(len(predictions_a),1)
 
 # I should create a CSV to report from:
-predictions_df.to_csv('../public/csv/reg4.csv', float_format='%4.3f', index=False)
+predictions_df.to_csv('../public/csv/reg4.csv', float_format='%4.6f', index=False)
 
 # I should report long-only-effectiveness:
 eff_lo_f = np.sum(predictions_df.pctlead)
