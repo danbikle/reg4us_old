@@ -1,6 +1,6 @@
 # backtest_rpt.py
 
-# This script should report on results of a backtest for a year.
+# This script should report on results of a backtest.
 
 # This script should be called from ~/reg4us/script/backtest.bash
 
