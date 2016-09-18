@@ -7,9 +7,9 @@
 # Next it should report effectiveness of the models.
 
 # Demo:
-# ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=30 TESTYEAR=2015
+# ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2000
 
-# Above demo will train from years 1985 through 2014 and predict each day of 2015
+# Above demo will train from years 1985 through 2014 and predict each day of 2000
 
 import numpy  as np
 import pandas as pd
@@ -138,20 +138,20 @@ rgb0_df.columns  = ['cdate','Long Only']
 # 2. If model is True, model-line goes up.
 len_i      = len(rgb0_df)
 blue_l     = [cp       for cp       in predictions_df.cp]
-eff_linr_l = [eff_linr for eff_linr in predictions_df.eff_linr]
+pred_linr_l = [pred_linr for pred_linr in predictions_df.pred_linr]
 linr_l     = [blue_l[0]]
 for row_i in range(len_i):
   blue_delt = blue_l[row_i+1]-blue_l[row_i]
-  linr_delt = np.sign(eff_linr_l[row_i]) * blue_delt
+  linr_delt = np.sign(pred_linr_l[row_i]) * blue_delt
   linr_l.append(linr_l[row_i]+linr_delt)
 rgb0_df['Linear Regression'] = linr_l[:-1]
 
 # I should create effectiveness-line for Logistic Regression predictions.
-eff_logr_l = [eff_logr for eff_logr in predictions_df.eff_logr]
+pred_logr_l = [pred_logr for pred_logr in predictions_df.pred_logr]
 logr_l     = [blue_l[0]]
 for row_i in range(len_i):
   blue_delt = blue_l[row_i+1]-blue_l[row_i]
-  logr_delt = np.sign(eff_logr_l[row_i]) * blue_delt
+  logr_delt = np.sign(pred_logr_l[row_i]-0.5) * blue_delt
   logr_l.append(logr_l[row_i]+logr_delt)
 rgb0_df['Logistic Regression'] = logr_l[:-1]
 
