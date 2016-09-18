@@ -19,8 +19,8 @@ if (len(sys.argv) != 2):
   print("~/anaconda3/bin/python ~/anaconda3/bin/python backtest_rpt.py ../public/csv/backtest_2001.csv")
   sys.exit()
   
-yr = sys.argv[1]
-bt_df = pd.read_csv(yr)
+csv_in = sys.argv[1]
+bt_df  = pd.read_csv(csv_in)
 
 # I should report long-only-effectiveness:
 eff_lo_f = np.sum(bt_df.pctlead)
@@ -28,16 +28,14 @@ eff_lo_f = np.sum(bt_df.pctlead)
 # I should report Linear-Regression-Effectiveness:
 eff_sr     = bt_df.pctlead * np.sign(bt_df.pred_linr)
 bt_df['eff_linr'] = eff_sr
-eff_linr_f                 = np.sum(eff_sr)
+eff_linr_f        = np.sum(eff_sr)
 
 # I should report Logistic-Regression-Effectiveness:
 eff_sr     = bt_df.pctlead * np.sign(bt_df.pred_logr - 0.5)
 bt_df['eff_logr'] = eff_sr
-eff_logr_f                 = np.sum(eff_sr)
+eff_logr_f        = np.sum(eff_sr)
 
-print('yr: '+yr)
-# print(bt_df.head())
-# print(bt_df.tail())
+print('csv_in: '+csv_in)
 print('Long-Only-Effectiveness: '          +str(eff_lo_f))
 print('Linear-Regression-Effectiveness: '  +str(eff_linr_f))
 print('Logistic-Regression-Effectiveness: '+str(eff_logr_f))

@@ -25,8 +25,9 @@ rm -f /tmp/learn_tst_rpt.py.txt
 rm -f ../public/csv/backtest_*csv
 rm -f ../public/backtest_$yr.png
 thisyr=`date +%Y`
-for (( yr=2000; yr<=${thisyr}; yr++ ))
+for (( yr=2010; yr<=${thisyr}; yr++ ))
 do
+    echo Busy...
     echo backtesting: $yr                                             >> /tmp/learn_tst_rpt.py.txt
     ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=$yr #>> /tmp/learn_tst_rpt.py.txt 2>&1
     mv ../public/csv/reg4.csv ../public/csv/backtest_$yr.csv
