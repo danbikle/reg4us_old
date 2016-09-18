@@ -36,8 +36,7 @@ do
     ~/anaconda3/bin/python whatif.py $pctchange
 
     # I should compute features from the prices:
-    # ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
-    ~/anaconda3/bin/python genf.py SLOPES='[6,7]'
+    ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
     # I should learn, test, and report:
     ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016 > /tmp/learn_tst_rpt.py.out 2>&1
