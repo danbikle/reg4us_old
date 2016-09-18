@@ -41,4 +41,8 @@ cp /tmp/backtest_all.csv ../public/csv/
 ~/anaconda3/bin/python backtest_rpt.py ../public/csv/backtest_all.csv
 ~/anaconda3/bin/python backtest_rgb.py ../public/csv/backtest_all.csv
 
+# backtest.bash clobbers data created by night.bash
+# I should fix that:
+./night.bash
+
 exit
