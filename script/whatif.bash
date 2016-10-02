@@ -45,7 +45,7 @@ do
     cp ~/reg4us/public/csv/gspc2.csv.bak ~/reg4us/public/csv/gspc2.csv
 done
 
-# I should see 5 predictions for 5 ascending price points:
+# I should see predictions for ascending price points:
 cat ../public/csv/whatif_pred.csv
 ~/anaconda3/bin/python whatif_rpt.py
 
