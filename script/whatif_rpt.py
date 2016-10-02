@@ -15,5 +15,26 @@ import pandas as pd
 rpt_df = pd.read_csv('../public/csv/whatif_pred.csv')
 rpt_df.to_html('../app/views/pages/_whatif_pred.erb', index=False)
 
-'bye'
+# I should plot 'Logistic Regression Prediction' vs Whatif_Price
 
+pvprice_df = rpt_df.set_index(['Whatif_Price'])
+
+import matplotlib
+matplotlib.use('Agg')
+# Order is important here.
+# Do not move the next import:
+import matplotlib.pyplot as plt
+
+pvprice_df[['Logistic Regression Prediction']].plot.line(title="Prediction vs Price", figsize=(11,7))
+# I should plot
+plt.grid(True)
+plt.savefig('../public/logr_price.png')
+plt.close()
+
+pvprice_df[['Linear Regression Prediction']].plot.line(title="Prediction vs Price", figsize=(11,7))
+# I should plot
+plt.grid(True)
+plt.savefig('../public/linr_price.png')
+plt.close()
+
+'bye'
