@@ -57,12 +57,13 @@ for slope_i in slopes_a:
 
 # I should generate Date features:
 dt_sr = pd.to_datetime(gspc_df.cdate)
-dow_l = [ float(dt.strftime('%w' ))/100.0 for dt in dt_sr ]
-moy_l = [ float(dt.strftime('%-m'))/100.0 for dt in dt_sr ]
-dom_l = [ float(dt.strftime('%-d'))/100.0 for dt in dt_sr ]
+dow_l = [float(dt.strftime('%w' ))/100.0 for dt in dt_sr]
+moy_l = [float(dt.strftime('%-m'))/100.0 for dt in dt_sr]
+dom_l = [float(dt.strftime('%-d'))       for dt in dt_sr]
+wom_l = [round(dom/5)/100.0             for dom in dom_l]
 gspc_df['dow'] = dow_l
 gspc_df['moy'] = moy_l
-# gspc_df['dom'] = dom_l
+# FAIL: gspc_df['wom'] = wom_l
 
 # I should write to CSV file to be used later:
 gspc_df.to_csv('../public/csv/feat.csv', float_format='%4.4f', index=False)
