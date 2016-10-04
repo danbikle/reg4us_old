@@ -48,6 +48,7 @@ done
 # I should see predictions for ascending price points:
 cat ../public/csv/whatif_pred.csv
 ~/anaconda3/bin/python whatif_rpt.py
+~/anaconda3/bin/python whatif_rpt2.py
 
 # I should note the current price:
 tail -1 ~/reg4us/public/csv/gspc2.csv > ../app/views/pages/_current_price.erb
