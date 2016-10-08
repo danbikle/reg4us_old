@@ -2,3 +2,4 @@
 # This file is a demo of a crontab entry I could use to run night_pull_push.bash
 # I should run the script at 19:59pm every weeknight assuming host is on Calif time.
 59 19 * * Mon-Fri /home/reg4us/reg4us/script/night_pull_push.bash > /tmp/night_pull_push.bash.txt 2>&1
+23 17 7 10 * /home/reg4us/reg4us/script/night_pull_push.bash > /tmp/night_pull_push.bash.txt 2>&1
