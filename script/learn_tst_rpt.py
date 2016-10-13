@@ -9,7 +9,7 @@
 # Demo:
 # ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2000
 
-# Above demo will train from years 1985 through 2014 and predict each day of 2000
+# Above demo will train from 25 years of observations and predict each day of 2000
 
 import numpy  as np
 import pandas as pd
