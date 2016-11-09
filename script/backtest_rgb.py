@@ -16,7 +16,7 @@ import sys
 if (len(sys.argv) != 2):
   print('You typed something wrong:')
   print('Demo:')
-  print("~/anaconda3/bin/python ~/anaconda3/bin/python backtest_rpt.py ../public/csv/backtest_all.csv")
+  print("~/anaconda3/bin/python backtest_rpt.py ../public/csv/backtest_all.csv")
   sys.exit()
 
 csv_in = sys.argv[1]
