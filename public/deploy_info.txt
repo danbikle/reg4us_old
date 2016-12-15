@@ -1,0 +1,15 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+[remote "gh"]
+	url = git@github.com:danbikle/reg4us.git
+	fetch = +refs/heads/*:refs/remotes/gh/*
+[remote "bit"]
+	url = git@bitbucket.org:bikle/reg4us.git
+	fetch = +refs/heads/*:refs/remotes/bit/*
+
+[remote "heroku"]
+	url = https://git.heroku.com/reg4.git
+	fetch = +refs/heads/*:refs/remotes/heroku/*
+svmheroku@yahoo.com
