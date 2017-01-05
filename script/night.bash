@@ -33,6 +33,6 @@ sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/r
 ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
 # I should learn, test, and report:
-~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2016
+~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2017
 
 exit
