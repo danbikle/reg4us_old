@@ -24,7 +24,7 @@ bin/rails s
 
 The above shell commands work well if you run them in this VirtualBox instance:
 
-https://s3-us-west-2.amazonaws.com/ml4us/ub16aug13d.ova
+https://drive.google.com/file/d/0Bx3iDDAtxxI4TEZwSkZRYVhpYm8
 
 The password of the ann account in the above instance is 'a'.
 
