@@ -20,7 +20,8 @@ mkdir -p ~/reg4us/public/csv/
 echo 'Whatif_Price,Linear Regression Prediction,Logistic Regression Prediction' > ../public/csv/whatif_pred.csv
 
 # I should get prices from Yahoo:
-/usr/bin/curl http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC > ~/reg4us/public/csv/gspc.csv
+rm -f ~/reg4us/public/csv/gspc.csv
+wget --output-document=${HOME}/reg4us/public/csv/gspc.csv http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
 
 # I should extract two columns and also sort:
 echo cdate,cp                                                              > ~/reg4us/public/csv/gspc2.csv
