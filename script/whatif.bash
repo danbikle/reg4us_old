@@ -20,7 +20,7 @@ mkdir -p ~/reg4us/public/csv/
 echo 'Whatif_Price,Linear Regression Prediction,Logistic Regression Prediction' > ../public/csv/whatif_pred.csv
 
 # I should get prices:
-curl 'http://tkrprice.herokuapp.com/static/tkrs/^GSPC.csv' > ~/reg4us/public/csv/gspc2.csv
+curl 'http://tkrprice.herokuapp.com/static/gspc.csv' > ~/reg4us/public/csv/gspc2.csv
 
 cp ~/reg4us/public/csv/gspc2.csv  ~/reg4us/public/csv/gspc2.csv.bak
 for pctchange in -1.0 -0.8 -0.6 -0.4 -0.2 0.0 0.2 0.4 0.6 0.8 1.0
