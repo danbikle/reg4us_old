@@ -19,13 +19,8 @@ mkdir -p ~/reg4us/public/csv/
 # I should prep CSV:
 echo 'Whatif_Price,Linear Regression Prediction,Logistic Regression Prediction' > ../public/csv/whatif_pred.csv
 
-# I should get prices from Yahoo:
-rm -f ~/reg4us/public/csv/gspc.csv
-wget --output-document=${HOME}/reg4us/public/csv/gspc.csv http://ichart.finance.yahoo.com/table.csv?s=%5EGSPC
-
-# I should extract two columns and also sort:
-echo cdate,cp                                                              > ~/reg4us/public/csv/gspc2.csv
-sort ~/reg4us/public/csv/gspc.csv|awk -F, '{print $1"," $5}'|grep -v Date >> ~/reg4us/public/csv/gspc2.csv
+# I should get prices:
+curl 'http://tkrprice.herokuapp.com/static/tkrs/^GSPC.csv' > ~/reg4us/public/csv/gspc2.csv
 
 cp ~/reg4us/public/csv/gspc2.csv  ~/reg4us/public/csv/gspc2.csv.bak
 for pctchange in -1.0 -0.8 -0.6 -0.4 -0.2 0.0 0.2 0.4 0.6 0.8 1.0
