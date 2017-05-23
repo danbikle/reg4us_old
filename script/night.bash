@@ -23,7 +23,7 @@ cd ~/reg4us/script/
 mkdir -p ~/reg4us/public/csv/
 
 # I should get prices:
-curl 'http://tkrprice.herokuapp.com/static/gspc.csv' > ~/reg4us/public/csv/gspc2.csv
+./curlprices.bash
 
 # I should compute features from the prices:
 ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
