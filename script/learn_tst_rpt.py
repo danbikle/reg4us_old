@@ -124,7 +124,7 @@ plt.savefig('../public/logr1.png')
 plt.close()
 
 fig = plt.figure()
-fig.suptitle('Scatter Plot Of Logistic Regression Predictions vs Linear Regression Predictions')
+fig.suptitle('Logistic Regression Predictions vs Linear Regression Predictions')
 plt.scatter(predictions_df.pred_linr, predictions_df.pred_logr)
 plt.savefig('../public/linlog.png')
 plt.close()
