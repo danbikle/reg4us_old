@@ -35,7 +35,7 @@ do
     ~/anaconda3/bin/python genf.py SLOPES='[2,3,4,5,6,7,8,9]'
 
     # I should learn, test, and report:
-    ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2017 > /tmp/learn_tst_rpt.py.out 2>&1
+    ~/anaconda3/bin/python learn_tst_rpt.py TRAINSIZE=25 TESTYEAR=2018 > /tmp/learn_tst_rpt.py.out 2>&1
     tail -1 ../public/csv/reg4.csv | awk -F, '{print $2"," $(NF-1)"," $NF}' >> ../public/csv/whatif_pred.csv
 
     cp ~/reg4us/public/csv/gspc2.csv.bak ~/reg4us/public/csv/gspc2.csv
